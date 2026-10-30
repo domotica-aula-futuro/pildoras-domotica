@@ -1,0 +1,8 @@
+type: history-graph
+title: Temperatura y humedad (24 h)
+hours_to_show: 24
+entities:
+  - entity: sensor.quijano_clima_temperatura
+    name: Temperatura
+  - entity: sensor.quijano_clima_humedad
+    name: Humedad

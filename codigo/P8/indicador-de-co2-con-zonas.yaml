@@ -1,0 +1,10 @@
+type: gauge
+entity: sensor.quijano_aire_co2
+name: CO2 en el aula
+unit: ppm
+min: 400
+max: 2000
+severity:
+  green: 400
+  yellow: 800
+  red: 1200

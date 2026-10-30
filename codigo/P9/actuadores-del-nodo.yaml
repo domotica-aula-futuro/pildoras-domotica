@@ -1,0 +1,39 @@
+output:
+  - platform: ledc                # PWM para la tira LED
+    pin: GPIO25
+    id: pwm_tira
+    frequency: 1000 Hz
+  - platform: ledc                # PWM de 50 Hz para el servo
+    pin: GPIO27
+    id: pwm_servo
+    frequency: 50 Hz
+
+light:
+  - platform: monochromatic
+    output: pwm_tira
+    name: "Tira LED"
+
+switch:
+  - platform: gpio
+    pin:
+      number: GPIO26
+      inverted: true              # módulo de relé activo a nivel bajo
+    name: "Ventilador"
+    restore_mode: ALWAYS_OFF      # tras un corte, arranca apagado
+
+servo:
+  - id: servo_ventana
+    output: pwm_servo
+
+number:
+  - platform: template
+    name: "Apertura ventana"
+    unit_of_measurement: "%"
+    min_value: 0
+    max_value: 100
+    step: 10
+    optimistic: true
+    set_action:
+      - servo.write:
+          id: servo_ventana
+          level: !lambda 'return (x / 50.0) - 1.0;'   # 0 % -> -1.0, 100 % -> 1.0

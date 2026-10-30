@@ -1,0 +1,50 @@
+esphome:
+  name: montseny-clima-nodo1        # nombre del dispositivo en la red
+  friendly_name: Clima nodo 1
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+
+api:
+  encryption:
+    key: !secret api_key            # clave propia de cada nodo
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:                               # red de rescate si no encuentra la WiFi
+    ssid: "Clima-Nodo1-Rescate"
+
+sensor:
+  - platform: dht
+    pin: GPIO4
+    model: DHT22
+    update_interval: 30s
+    temperature:
+      name: "Temperatura"
+      filters:
+        - sliding_window_moving_average:
+            window_size: 4
+            send_every: 1
+    humidity:
+      name: "Humedad"
+  - platform: wifi_signal
+    name: "Señal WiFi"
+    update_interval: 60s
+
+switch:
+  - platform: gpio
+    pin: GPIO5
+    name: "LED aviso"
+
+binary_sensor:
+  - platform: status
+    name: "Estado"

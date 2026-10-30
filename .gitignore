@@ -1,0 +1,35 @@
+# Archivos que NUNCA se suben al repositorio
+# -----------------------------------------
+# Secretos: contraseñas de WiFi, claves de API y OTA
+secrets.yaml
+**/secrets.yaml
+secretos.h
+**/secretos.h
+*.env
+.env*
+
+# ESPHome: carpetas de compilación y binarios
+.esphome/
+**/.esphome/
+*.bin
+*.elf
+
+# Arduino IDE / PlatformIO
+build/
+.pio/
+.vscode/
+
+# Home Assistant: bases de datos, registros y copias
+*.db
+*.db-shm
+*.db-wal
+*.log
+.storage/
+backups/
+*.tar
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
