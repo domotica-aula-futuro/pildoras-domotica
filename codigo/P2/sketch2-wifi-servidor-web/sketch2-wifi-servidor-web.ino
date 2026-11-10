@@ -5,7 +5,7 @@
 const char* SSID = "RED_IOT_AULA";       // pon aquí la red de tu aula
 const char* PASS = "********";           // no subas la contraseña real a GitHub
 
-DHT dht(4, DHT22);                       // DHT22 en GPIO4, alimentado a 3,3 V
+DHT dht(4, DHT11);                       // DHT11 en GPIO4, alimentado a 3,3 V (0-50 °C, 20-80 % HR)
 WebServer server(80);
 
 void paginaInicio() {
