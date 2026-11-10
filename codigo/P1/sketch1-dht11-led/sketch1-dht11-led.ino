@@ -4,7 +4,7 @@
 #define PIN_LED 8
 #define UMBRAL_TEMP 26.0          // °C, valor de ejemplo para la práctica
 
-DHT dht(PIN_DHT, DHT22);
+DHT dht(PIN_DHT, DHT11);
 unsigned long ultimaLectura = 0;
 
 void setup() {
@@ -20,7 +20,7 @@ void loop() {
     float t = dht.readTemperature();
     float h = dht.readHumidity();
     if (isnan(t) || isnan(h)) {
-      Serial.println("Error leyendo el DHT22");
+      Serial.println("Error leyendo el DHT11");
       return;
     }
     Serial.print("Temperatura: "); Serial.print(t, 1); Serial.print(" C  ");

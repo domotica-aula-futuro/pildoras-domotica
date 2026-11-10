@@ -1,7 +1,7 @@
 #include <DHT.h>
 #include <SoftwareSerial.h>
 
-DHT dht(2, DHT22);
+DHT dht(2, DHT11);
 SoftwareSerial enlace(10, 11);           // RX = 10, TX = 11 hacia el ESP32
 unsigned long ultima = 0;
 

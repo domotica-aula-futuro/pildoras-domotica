@@ -26,7 +26,7 @@ wifi:
 sensor:
   - platform: dht
     pin: GPIO4
-    model: DHT22
+    model: DHT11
     update_interval: 30s
     temperature:
       name: "Temperatura"
